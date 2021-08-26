@@ -12,12 +12,15 @@
        // }
        let i  
        let j  
+       
        function loop() {
            i=parseInt(document.getElementById('for').value)
+           document.getElementById('output').innerHTML = ""
            for(j=0;j<i;j++)
-           {
-               document.write('hello'+'<br>')
+           {    
+            document.getElementById('output').innerHTML += "Hello <br>"
            }
+           
        }
     </script>
     <title>14-loop-for.html</title>
@@ -29,6 +32,6 @@
     <input type="submit" value="Submit"onclick="loop()">
     <br>
     <br>
-    
+    <p id="output"></p>
 </body>
 </html>
