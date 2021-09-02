@@ -124,6 +124,7 @@
                         </div>
                         <input class="btn btn-danger w-25" type="submit" value="submit" onclick="setdata()">
                         <input class="btn btn-danger w-25" type="reset" value="reset" onclick='resetdata()'>
+                        <input class="btn btn-danger w-25" type="button" value="delete storage" onclick='deletestorage()'>
                     </p>
               
  
@@ -159,26 +160,42 @@
             //let local_empid = []
            // let local_empname = []
             function setdata() {
-                local_employee = localStorage.getItem('employee')
+                
                 employee = eval(local_employee)
                 empid = document.getElementById('empid').value
                 empname = document.getElementById('empname').value
                 console.log(empid + " " + empname)
-                employee.push(JSON.stringify({"empid" : empid,"empname" : empname}))
+                if(empid!=''&& empname!='')
+                {
+                    if(employee==null){
+                    employee=[{"empid" : empid,"empname" : empname}]
+                    alert('บันทึกเรียบร้อย')
+                }
+                else{
+                    employee.push(JSON.stringify({"empid" : empid,"empname" : empname}))
+                    
+                }
+                }
+                else{
+                    alert('ป้อนข้อมูล ซื !!!!!!!!!!!!!!')
+                }
                 console.log(employee)
-               // employee = JSON.stringify({"empid" : empid,"empname" : empname})
-               // localStorage.setItem('employee',employee)
-               // local_empid.push(empid)
-                //local_empname.push(empname)
-               // console.log(local_empid)
+         
                localStorage.setItem('employee',JSON.stringify(employee))
-               // localStorage.setItem('empname', local_empname)
+               
+               local_employee = localStorage.getItem('employee')
                 document.getElementById('empid').value = ''
                 document.getElementById('empname').value = ''
+                
             }
             function resetdata(){
                 document.getElementById('empid').value=''
                 document.getElementById('empname').value='' 
+            }
+            function deletestorage() {
+                localStorage.removeItem('employee')
+                employee=[]
+                local_employee=null
             }
         </script>
 </body>
